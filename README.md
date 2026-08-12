@@ -92,7 +92,18 @@ streamlit run frontend/app.py
 
 ---
 
-## 🔌 API Endpoints
+## 🌐 Render Deployment (Single Server)
 
-- `GET /`: Health check & API version
-- `POST /chat`: Accepts `{ "message": "...", "history": [...] }` and returns Gemini AI response
+To deploy both FastAPI backend and Streamlit frontend in a single Render Web Service:
+
+1. **Create Web Service on Render**:
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `python start.py`
+
+2. **Environment Variables on Render**:
+   - `GEMINI_API_KEY`: Your Gemini API Key
+   - `BACKEND_PORT`: `8000` (internal port for FastAPI)
+   - `BACKEND_HOST`: `127.0.0.1`
+
+> **Note**: Render automatically injects a `PORT` environment variable which `start.py` assigns to Streamlit so external traffic reaches the Streamlit dashboard, while FastAPI runs internally on `BACKEND_PORT`.
+
